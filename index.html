@@ -7,10 +7,13 @@
   <meta name="description" content="Laboratorio interactivo de planificación de CPU: 14 algoritmos, diagramas de Gantt, cálculos paso a paso y guía de estudio.">
   <title>CPU Flow Estudio | Simulador de planificación de CPU</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <script>(function(){var mode='dark';try{mode=localStorage.getItem('cpu-flow-tema')==='light'?'light':'dark';}catch(e){}document.documentElement.setAttribute('data-theme',mode);})();</script>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="theme.css">
   <script src="scheduler.js" defer></script>
   <script src="app.js" defer></script>
   <script src="practicas.js" defer></script>
+  <script src="theme.js" defer></script>
 </head>
 <body>
   <div class="app-shell">
@@ -25,7 +28,7 @@
         <a href="#examen" class="nav-link">Prácticas de examen</a>
         <a href="#historial" class="nav-link">Historial</a>
       </nav>
-      <div class="nav-side"><span class="offline-pill"><span class="online-dot"></span> Sin registro · gratis</span><button class="nav-menu" id="navToggle" aria-label="Mostrar menú" aria-expanded="false">☰</button></div>
+      <div class="nav-side"><button type="button" class="theme-toggle" id="themeToggle" aria-label="Cambiar a modo claro" aria-pressed="true" title="Cambiar entre modo oscuro y claro"><span class="theme-toggle-icon" aria-hidden="true">☀</span><span class="theme-toggle-label">Modo claro</span></button><span class="offline-pill"><span class="online-dot"></span> Sin registro · gratis</span><button class="nav-menu" id="navToggle" aria-label="Mostrar menú" aria-expanded="false">☰</button></div>
     </header>
 
     <main>
