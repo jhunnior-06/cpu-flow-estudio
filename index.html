@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1530">
+  <meta name="description" content="Laboratorio interactivo de planificación de CPU: 14 algoritmos, diagramas de Gantt, cálculos paso a paso y guía de estudio.">
+  <title>CPU Flow Estudio | Simulador de planificación de CPU</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+  <script src="scheduler.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a href="#inicio" class="brand" aria-label="CPU Flow Estudio, inicio">
+        <span class="brand-mark">⌘</span><span>cpu<span class="brand-accent">flow</span><small> ESTUDIO</small></span>
+      </a>
+      <nav class="top-nav" aria-label="Navegación principal">
+        <a href="#simulador" class="nav-link active">Simulador</a>
+        <a href="#comparar" class="nav-link">Comparador</a>
+        <a href="#guia" class="nav-link">Guía de estudio</a>
+        <a href="#historial" class="nav-link">Historial</a>
+      </nav>
+      <div class="nav-side"><span class="offline-pill"><span class="online-dot"></span> Sin registro · gratis</span><button class="nav-menu" id="navToggle" aria-label="Mostrar menú" aria-expanded="false">☰</button></div>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="ping"></span> LABORATORIO INTERACTIVO · SISTEMAS OPERATIVOS</div>
+          <h1>Entiende cómo se <span>planifica la CPU.</span></h1>
+          <p>Ingresa tus procesos, compara <strong>14 algoritmos</strong> y descubre cada decisión del planificador con una simulación visual, métricas explicadas y ejercicios de estudio.</p>
+          <div class="hero-actions"><a class="primary-button" href="#simulador">▶ Empezar a simular <span>→</span></a><a class="ghost-button" href="#guia">◫ Guía y fórmulas</a></div>
+          <div class="hero-stat-line"><span>◉ 14 algoritmos</span><span>◷ Paso a paso</span><span>▤ Gantt de colores</span><span>✓ Cálculos automáticos</span></div>
+        </div>
+        <div class="hero-graphic" aria-hidden="true">
+          <div class="window-top"><div class="window-dots"><b></b><b></b><b></b></div><span>SIMULACIÓN EN VIVO</span><span>● CPU ACTIVA</span></div>
+          <div class="fake-chart-head"><b>Round Robin</b><span>Quantum: 2</span></div>
+          <div class="fake-chart"><div><label>P1</label><i style="--c:#7569fb;--start:0;--w:26"></i><i style="--c:#7569fb;--start:56;--w:23"></i></div><div><label>P2</label><i style="--c:#22b8a8;--start:27;--w:26"></i><i style="--c:#22b8a8;--start:79;--w:13"></i></div><div><label>P3</label><i style="--c:#f49a58;--start:53;--w:26"></i></div></div>
+          <div class="fake-times">0 <span>2</span><span>4</span><span>6</span><span>8</span></div>
+          <div class="hero-mini-grid"><div><small>ESPERA PROMEDIO</small><strong>3.75 <em>u</em></strong><small>↓ Menor es mejor</small></div><div><small>USO DE CPU</small><strong>100<em>%</em></strong><small>↑ Mayor es mejor</small></div></div>
+        </div>
+      </section>
+
+      <section id="simulador" class="workspace-section">
+        <div class="section-heading"><div><div class="overline">01 / SIMULADOR</div><h2>Tu laboratorio de planificación</h2><p>Modifica las celdas y observa cómo cambia cada resultado.</p></div><span class="section-tag">DATOS DE ENTRADA → RESULTADOS</span></div>
+        <div class="workspace">
+          <aside class="settings-panel panel">
+            <div class="panel-title"><div><span class="icon-box">⚙</span><h3>Configuración</h3></div><span class="step-badge">PASO 1</span></div>
+            <div class="field"><label for="algorithm">Algoritmo de planificación</label><select id="algorithm"></select></div>
+            <div class="algo-description" id="algorithmInfo"></div>
+            <div class="param-grid"><div class="field" id="quantumBox"><label for="quantum">Quantum</label><input type="number" id="quantum" min="1" max="100" step="1" value="2"></div><div class="field" id="horizonBox"><label for="horizon">Horizonte (t)</label><input type="number" id="horizon" min="1" max="600" value="40"></div></div>
+            <div class="divider-title"><h4>Procesos</h4><span>Hasta 20 procesos</span></div>
+            <div class="table-container"><table class="entry-table" id="processTable"><thead><tr><th>Proceso</th><th>Llegada</th><th>Ráfaga</th><th class="col-priority">Prioridad</th><th class="col-queue">Cola</th><th class="col-period">Período</th><th class="col-deadline">Plazo</th><th class="col-io">E/S tras</th><th class="col-io">Duración E/S</th><th></th></tr></thead><tbody id="processRows"></tbody></table></div>
+            <div class="entry-controls"><button class="text-button" id="addProcess">＋ Agregar proceso</button><button class="text-button muted" id="toggleAdvanced" aria-pressed="false">⚡ Opciones E/S</button></div>
+            <div class="field"><label for="preset">Ejercicios preparados</label><select id="preset"><option value="rr">Round Robin · 4 procesos</option><option value="fcfs">FCFS · ejemplo del PDF</option><option value="sjf">SJF · ejemplo del PDF</option><option value="prioridad">Prioridades · ejemplo del PDF</option><option value="srtf">SRTF · ejemplo del PDF</option><option value="io">Ráfagas con E/S y bloqueo</option><option value="periodic">EDF / RMS · tareas periódicas</option></select></div>
+            <div class="field-actions"><button class="secondary-button" id="loadPreset">Cargar ejemplo</button><button class="secondary-button" id="resetData">Restablecer</button></div>
+            <button class="run-button" id="simulate">▶ Simular y explicar todo <span>→</span></button>
+            <p class="data-note">Los cálculos son locales: tus datos no se envían a un servidor.</p>
+          </aside>
+          <div class="results-side">
+            <div class="results-toolbar panel"><div><span class="icon-box purple">◈</span><div><h3>Resultados de la simulación</h3><p id="resultCaption">Edita los datos para actualizar tu ejercicio</p></div></div><div class="result-actions"><button class="secondary-button compact" id="saveRun" title="Guardar en este navegador">☆ Guardar</button><button class="secondary-button compact" id="downloadCsv">↓ CSV</button><button class="secondary-button compact" id="downloadJson">↓ JSON</button><button class="secondary-button compact" id="printRun">▣ Imprimir / PDF</button></div></div>
+            <div class="warning" id="errorBox" role="alert" hidden></div>
+            <div class="metrics-grid" id="metricCards"></div>
+            <div class="panel simulation-panel"><div class="panel-title"><div><span class="icon-box">▥</span><h3>Diagrama de Gantt</h3></div><span class="step-badge">AUTOMÁTICO</span></div><div class="gantt-legend" id="ganttLegend"></div><div class="gantt-scroll" id="ganttTimeline" tabindex="0" aria-label="Diagrama de Gantt desplazable"></div><div class="gantt-hint">Selecciona cualquier bloque del diagrama para estudiar ese instante.</div></div>
+            <div class="panel step-panel"><div class="panel-title"><div><span class="icon-box orange">▶</span><h3>Explicación paso a paso</h3></div><span class="step-badge">PASO 2</span></div><div class="step-bar"><button class="step-button" id="goFirst" title="Ir al inicio">|◀</button><button class="step-button" id="goPrev" title="Paso anterior">◀</button><button class="step-button play" id="togglePlay" title="Reproducir">▶ Reproducir</button><button class="step-button" id="goNext" title="Siguiente paso">▶</button><button class="step-button" id="goLast" title="Ir al final">▶|</button><div class="step-number" id="stepCounter">t=0</div></div><input type="range" class="timeline-slider" id="stepSlider" min="0" max="0" value="0" aria-label="Tiempo de la simulación"><div class="step-readout" id="stepReadout"></div><div class="states-title">Estado de cada proceso</div><div class="state-list" id="stateList"></div><div class="explain-wrap"><div class="explain-title">¿Por qué se ejecutó ese proceso?</div><p id="stepExplanation"></p></div><button class="expand-button" id="toggleTrace">Ver todas las decisiones (tabla) <span>↓</span></button><div class="trace-table-wrap" id="traceWrap" hidden><div class="table-container"><table class="data-table"><thead><tr><th>t</th><th>CPU</th><th>Cola READY</th><th>Bloqueados</th><th>¿Qué pasó?</th></tr></thead><tbody id="traceBody"></tbody></table></div><div class="pagination"><button class="secondary-button compact" id="traceMore">Mostrar más pasos</button><span id="traceCount"></span></div></div></div>
+            <div class="panel table-panel"><div class="panel-title"><div><span class="icon-box green">▤</span><h3>Cálculo de métricas por proceso</h3></div><span class="step-badge">PASO 3</span></div><div class="table-container"><table class="data-table" id="metricsTable"><thead><tr><th>Proceso</th><th>Llegada</th><th>Ráfaga</th><th>Primera vez CPU</th><th>Finaliza</th><th>Retorno</th><th>Espera</th><th>Respuesta</th></tr></thead><tbody id="metricRows"></tbody></table></div><div class="formula-callout">TR = Finalización − Llegada &nbsp;·&nbsp; TE = TR − Ráfaga CPU − E/S bloqueada &nbsp;·&nbsp; TS = Primera ejecución − Llegada</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section" id="comparar"><div class="section-heading"><div><div class="overline">02 / COMPARADOR</div><h2>Los mismos procesos. Distintos algoritmos.</h2><p>La comparación utiliza exactamente los valores de la tabla inicial.</p></div><button class="secondary-button" id="compareNow">↻ Volver a calcular</button></div><div class="panel compare-panel"><div class="compare-controls"><label for="compareMetric">Comparar por</label><select id="compareMetric"><option value="waiting">Tiempo de espera promedio ↓</option><option value="turnaround">Tiempo de retorno promedio ↓</option><option value="response">Tiempo de respuesta promedio ↓</option><option value="cpu">Utilización de CPU ↑</option><option value="switches">Cambios de contexto ↓</option><option value="missed">Plazos incumplidos ↓</option></select><p>Para FCFS, SJF, Round Robin y otros algoritmos clásicos se procesa una sola ráfaga por proceso. EDF y RMS generan trabajos periódicos hasta el horizonte configurado.</p></div><div id="compareChart" class="compare-chart"></div><div class="table-container"><table class="data-table" id="compareTable"><thead><tr><th>Algoritmo</th><th>Espera media</th><th>Retorno medio</th><th>Respuesta media</th><th>CPU</th><th>Contextos</th><th>Acción</th></tr></thead><tbody id="compareRows"></tbody></table></div></div></section>
+
+      <section class="content-section" id="guia"><div class="section-heading"><div><div class="overline">03 / GUÍA DE ESTUDIO</div><h2>Aprende la teoría con ejemplos.</h2><p>Conceptos, fórmulas, tipos de algoritmos y preguntas para practicar.</p></div><span class="section-tag">TEORÍA + PRÁCTICA</span></div><div class="study-layout"><div class="panel guide-panel"><h3>Fórmulas fundamentales</h3><div class="formula-list"><div><strong>Tiempo de retorno (TR)</strong><code>Finalización − Llegada</code><p>Tiempo desde la llegada hasta que termina.</p></div><div><strong>Tiempo de espera (TE)</strong><code>Retorno − Ráfaga CPU − Bloqueo E/S</code><p>Tiempo acumulado aguardando en la cola READY.</p></div><div><strong>Tiempo de respuesta (TS)</strong><code>Primer inicio − Llegada</code><p>Tiempo hasta recibir CPU por primera vez.</p></div><div><strong>Uso de CPU</strong><code>100 × Tiempo ocupado / Tiempo total</code><p>Porcentaje de utilización durante la simulación.</p></div><div><strong>Rendimiento (throughput)</strong><code>Trabajos completados / Tiempo total</code><p>Procesos completados por unidad de tiempo.</p></div></div></div><div class="panel guide-panel"><h3>Preguntas clave</h3><div class="question-block"><p>¿Quién llegó primero?</p><strong>FCFS</strong></div><div class="question-block"><p>¿Quién tiene el trabajo más corto?</p><strong>SJF</strong></div><div class="question-block"><p>¿Quién tiene menos tiempo restante?</p><strong>SRTF</strong></div><div class="question-block"><p>¿A quién le toca el siguiente turno?</p><strong>Round Robin</strong></div><div class="question-block"><p>¿Cuál tiene mayor prioridad?</p><strong>Prioridades</strong></div><div class="tips-box">💡 <strong>Truco para el examen:</strong> el diagrama de Gantt se construye primero; los tiempos de retorno, espera y respuesta se calculan después.</div></div></div><div class="algo-gallery" id="algorithmCards"></div><div class="panel quiz-panel"><div><div class="overline">ENTRENA PARA EL EXAMEN</div><h3>Mini cuestionario interactivo</h3><p>Comprueba que entiendes la planificación de procesos.</p></div><div id="quizBody"></div></div></section>
+
+      <section class="content-section" id="historial"><div class="section-heading"><div><div class="overline">04 / HISTORIAL</div><h2>Guarda tus experimentos.</h2><p>Las ejecuciones se almacenan en este navegador mediante almacenamiento local.</p></div><button class="secondary-button" id="clearHistory">Borrar historial</button></div><div id="historyList" class="history-list"></div></section>
+    </main>
+    <footer><div class="footer-inner"><div><span class="brand-text">⌘ cpuflow<span> estudio</span></span><p>Una herramienta independiente de aprendizaje para Sistemas Operativos.</p></div><div><p>14 algoritmos · Sin iniciar sesión · Funciona sin backend</p><p>Desarrollado para ejercicios académicos · 2026</p></div></div></footer>
+  </div>
+  <div class="toast" role="status" id="toast" aria-live="polite"></div>
+</body>
+</html>
