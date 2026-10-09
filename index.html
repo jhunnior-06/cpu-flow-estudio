@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="styles.css">
   <script src="scheduler.js" defer></script>
   <script src="app.js" defer></script>
+  <script src="practicas.js" defer></script>
 </head>
 <body>
   <div class="app-shell">
@@ -20,7 +21,8 @@
       <nav class="top-nav" aria-label="Navegación principal">
         <a href="#simulador" class="nav-link active">Simulador</a>
         <a href="#comparar" class="nav-link">Comparador</a>
-        <a href="#guia" class="nav-link">Guía de estudio</a>
+        <a href="#guia" class="nav-link">Teoría</a>
+        <a href="#examen" class="nav-link">Prácticas de examen</a>
         <a href="#historial" class="nav-link">Historial</a>
       </nav>
       <div class="nav-side"><span class="offline-pill"><span class="online-dot"></span> Sin registro · gratis</span><button class="nav-menu" id="navToggle" aria-label="Mostrar menú" aria-expanded="false">☰</button></div>
@@ -32,7 +34,7 @@
           <div class="eyebrow"><span class="ping"></span> LABORATORIO INTERACTIVO · SISTEMAS OPERATIVOS</div>
           <h1>Entiende cómo se <span>planifica la CPU.</span></h1>
           <p>Ingresa tus procesos, compara <strong>14 algoritmos</strong> y descubre cada decisión del planificador con una simulación visual, métricas explicadas y ejercicios de estudio.</p>
-          <div class="hero-actions"><a class="primary-button" href="#simulador">▶ Empezar a simular <span>→</span></a><a class="ghost-button" href="#guia">◫ Guía y fórmulas</a></div>
+          <div class="hero-actions"><a class="primary-button" href="#simulador">▶ Empezar a simular <span>→</span></a><a class="ghost-button" href="#guia">◫ Teoría y fórmulas</a></div>
           <div class="hero-stat-line"><span>◉ 14 algoritmos</span><span>◷ Paso a paso</span><span>▤ Gantt de colores</span><span>✓ Cálculos automáticos</span></div>
         </div>
         <div class="hero-graphic" aria-hidden="true">
@@ -75,7 +77,19 @@
 
       <section class="content-section" id="guia"><div class="section-heading"><div><div class="overline">03 / GUÍA DE ESTUDIO</div><h2>Aprende la teoría con ejemplos.</h2><p>Conceptos, fórmulas, tipos de algoritmos y preguntas para practicar.</p></div><span class="section-tag">TEORÍA + PRÁCTICA</span></div><div class="study-layout"><div class="panel guide-panel"><h3>Fórmulas fundamentales</h3><div class="formula-list"><div><strong>Tiempo de retorno (TR)</strong><code>Finalización − Llegada</code><p>Tiempo desde la llegada hasta que termina.</p></div><div><strong>Tiempo de espera (TE)</strong><code>Retorno − Ráfaga CPU − Bloqueo E/S</code><p>Tiempo acumulado aguardando en la cola READY.</p></div><div><strong>Tiempo de respuesta (TS)</strong><code>Primer inicio − Llegada</code><p>Tiempo hasta recibir CPU por primera vez.</p></div><div><strong>Uso de CPU</strong><code>100 × Tiempo ocupado / Tiempo total</code><p>Porcentaje de utilización durante la simulación.</p></div><div><strong>Rendimiento (throughput)</strong><code>Trabajos completados / Tiempo total</code><p>Procesos completados por unidad de tiempo.</p></div></div></div><div class="panel guide-panel"><h3>Preguntas clave</h3><div class="question-block"><p>¿Quién llegó primero?</p><strong>FCFS</strong></div><div class="question-block"><p>¿Quién tiene el trabajo más corto?</p><strong>SJF</strong></div><div class="question-block"><p>¿Quién tiene menos tiempo restante?</p><strong>SRTF</strong></div><div class="question-block"><p>¿A quién le toca el siguiente turno?</p><strong>Round Robin</strong></div><div class="question-block"><p>¿Cuál tiene mayor prioridad?</p><strong>Prioridades</strong></div><div class="tips-box">💡 <strong>Truco para el examen:</strong> el diagrama de Gantt se construye primero; los tiempos de retorno, espera y respuesta se calculan después.</div></div></div><div class="algo-gallery" id="algorithmCards"></div><div class="panel quiz-panel"><div><div class="overline">ENTRENA PARA EL EXAMEN</div><h3>Mini cuestionario interactivo</h3><p>Comprueba que entiendes la planificación de procesos.</p></div><div id="quizBody"></div></div></section>
 
-      <section class="content-section" id="historial"><div class="section-heading"><div><div class="overline">04 / HISTORIAL</div><h2>Guarda tus experimentos.</h2><p>Las ejecuciones se almacenan en este navegador mediante almacenamiento local.</p></div><button class="secondary-button" id="clearHistory">Borrar historial</button></div><div id="historyList" class="history-list"></div></section>
+      <section class="content-section" id="examen">
+        <div class="section-heading"><div><div class="overline">04 / ENTRENAMIENTO</div><h2>Prácticas tipo examen, resueltas paso a paso.</h2><p>Ejercicios originales con datos variables, preguntas y corrección automática.</p></div><span class="section-tag">AUTOEVALUACIÓN</span></div>
+        <div class="exam-layout">
+          <div class="panel exam-sidebar"><h3>Laboratorio de examen</h3><p class="exam-subtitle">Selecciona una práctica y resuélvela antes de revelar las respuestas.</p>
+            <div class="field"><label for="examTopic">Tipo de práctica</label><select id="examTopic"><option value="fcfs">FCFS: Gantt y métricas</option><option value="sjf">SJF: selección sin apropiación</option><option value="srtf">SRTF: interrupciones</option><option value="rr">Round Robin: turnos de CPU</option><option value="priority">Prioridades: orden de ejecución</option></select></div>
+            <div class="exam-controls"><button id="examGenerate" class="run-button">↻ Generar ejercicio nuevo</button><button id="examShow" class="secondary-button">Ver solución explicada</button></div>
+            <div class="exam-score" id="examScore" aria-live="polite">Genera un ejercicio para comenzar.</div>
+          </div>
+          <div class="panel exam-main"><div id="examQuestion"></div><div id="examFeedback" aria-live="polite"></div><div id="examSolution" hidden></div></div>
+        </div>
+      </section>
+
+      <section class="content-section" id="historial"><div class="section-heading"><div><div class="overline">05 / HISTORIAL</div><h2>Guarda tus experimentos.</h2><p>Las ejecuciones se almacenan en este navegador mediante almacenamiento local.</p></div><button class="secondary-button" id="clearHistory">Borrar historial</button></div><div id="historyList" class="history-list"></div></section>
     </main>
     <footer><div class="footer-inner"><div><span class="brand-text">⌘ cpuflow<span> estudio</span></span><p>Una herramienta independiente de aprendizaje para Sistemas Operativos.</p></div><div><p>14 algoritmos · Sin iniciar sesión · Funciona sin backend</p><p>Desarrollado para ejercicios académicos · 2026</p></div></div></footer>
   </div>
