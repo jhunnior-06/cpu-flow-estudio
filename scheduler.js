@@ -61,6 +61,7 @@ function simulation(input,algorithm='fcfs',opt={}){
    const candidates=ps.filter(ready);
    if(!candidates.length&&ps.every(p=>p.remaining===0))break;
    const validRun=run&&ready(run);
+   const previousRun=validRun?run:null;
    let explain='';
    const pick=(score,desc)=>candidates.slice().sort((a,b)=>cmp(a,b,score,desc))[0]||null;
    const pickQueue=()=>{if(algorithm==='rr'){while(q.length){const n=byId(q.shift());if(n&&ready(n))return n;}}
@@ -88,6 +89,10 @@ function simulation(input,algorithm='fcfs',opt={}){
    const readyOther=candidates.filter(p=>!run||p.id!==run.id).slice().sort((a,b)=>a.readySince-b.readySince||a.index-b.index).map(p=>p.id);
    const blocked=ps.filter(p=>p.blockedUntil!==null&&p.blockedUntil>t).map(p=>p.id);
    const state={t,id:run?run.id:null,label:run?run.id:'Inactiva',ready:readyOther,blocked,arrivals:fresh.map(p=>p.id),remaining:run?run.remaining:null,reason:explain,states:Object.fromEntries(ps.map(p=>[p.id,p.finish!==null?'Finalizado':p.arrival>t?'Nuevo':p.blockedUntil!==null&&p.blockedUntil>t?'Bloqueado':run&&p.id===run.id?'Ejecución':'Listo']))};
+   // Valores anteriores a consumir CPU: la explicación usa la decisión real del motor.
+   state.decision={continued:run!==null&&previousRun===run,turnUsed:run?run.sliceUsed:0,
+     queue:algorithm==='rr'&&run?[run.id,...q]:[],
+     candidates:candidates.map(p=>({id:p.id,arrival:p.arrival,readySince:p.readySince,burst:p.burst,served:p.served,remaining:p.remaining,priority:p.priority}))};
    if(run){if(run.first===null)run.first=t;run.remaining--;run.served++;run.sliceUsed++;lastId=run.id;}
    steps.push(state);
    if(!run)continue;

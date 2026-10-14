@@ -38,5 +38,38 @@ body{background-attachment:fixed}
 .top-nav.open{background:#0d1427;border-bottom:1px solid var(--line);box-shadow:0 16px 30px rgba(0,0,0,.35)}
 footer{background:#0a1124;color:#d1d8f3}
 @media print{html,body{background:white!important;color:black!important}}
+/* Desarrollo numérico de las soluciones de examen. */
+.exam-main{min-width:0}
+.solution-section{padding-top:20px;margin-top:20px;border-top:1px solid var(--line)}
+.solution-section>h4{font-size:15px;color:var(--text);margin-bottom:12px;letter-spacing:0}
+.solution-key{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:14px 0}
+.solution-key>div{padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--white)}
+.solution-key dt{font-weight:800;color:var(--purple)}
+.solution-key dd{margin:2px 0 0;font-size:11px;color:var(--muted)}
+.solution-note{font-size:11px!important;color:var(--muted)!important}
+.solution-gantt-scroll{overflow-x:auto;margin:14px 0;scrollbar-width:thin;border-radius:9px}
+.solution-gantt{display:flex;width:100%}
+.solution-gantt-block{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:12px 4px;min-width:0;background:var(--process-color);color:#101827;border-right:1px solid #10182766;flex-basis:0!important}
+.solution-gantt-block strong{font-size:12px;overflow-wrap:anywhere;text-align:center;max-width:100%}
+.solution-gantt-block span{font-size:10px;font-weight:800;text-align:center}
+.decision-list{display:grid;gap:13px;margin:15px 0;padding:0;list-style:none}
+.decision-card,.process-calculation{min-width:0;padding:16px;border:1px solid var(--line);background:var(--white);border-radius:11px}
+.decision-heading{display:flex;align-items:center;gap:9px}
+.decision-heading h4{font-size:13px;letter-spacing:0}
+.solution-step-number{display:grid;place-items:center;flex-shrink:0;width:26px;height:26px;border-radius:8px;color:var(--text);background:var(--purple-light);font-weight:800}
+.decision-outcome{border-left:3px solid var(--teal);padding-left:10px;font-weight:700}
+.decision-candidates{margin-bottom:12px}
+#examSolution table caption{text-align:left;font-size:11px;font-weight:700;color:var(--muted);padding:8px 0}
+#examSolution .chosen-process{background:var(--purple-light)}
+#examSolution .chosen-process td:first-child{color:var(--purple);font-weight:800}
+.worked-formula{display:flex;flex-direction:column;gap:5px;margin:9px 0}
+.worked-formula>span{font-size:11px;font-weight:800;color:var(--muted)}
+.worked-formula code{display:block;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--purple-light);color:var(--text);font:600 12px/1.7 ui-monospace,monospace;white-space:normal;overflow-wrap:anywhere}
+.process-calculations{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin:15px 0}
+.process-calculation h4{display:flex;align-items:center;gap:8px;font-size:15px;letter-spacing:0}
+.process-calculation h4 i{width:10px;height:10px;border-radius:3px}
+.solution-summary{padding:17px;border:1px solid var(--line);border-radius:11px;background:var(--purple-light);margin-bottom:20px}
+@media(max-width:600px){.solution-key{grid-template-columns:repeat(2,minmax(0,1fr))}.process-calculations{grid-template-columns:1fr}.decision-card,.process-calculation{padding:12px}}
+
 /* Teoría y centro de prácticas */
 .theory-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:18px 0 24px}.theory-card{background:linear-gradient(150deg,#15233d,#101a30);border:1px solid #304363;border-radius:15px;padding:21px;box-shadow:0 12px 24px #0002}.theory-number{font-size:10px;font-weight:800;letter-spacing:1.7px;color:#9e9aff}.theory-card h3{font-size:17px;color:#f3f5ff;margin:9px 0}.theory-card p{font-size:13px;line-height:1.7;color:#bccbe0}.theory-tip{margin-top:16px;padding:11px 13px;border-left:3px solid #7d71fd;background:#1a2540;color:#c9dcff;font-size:12px;border-radius:0 8px 8px 0}.exam-layout{display:grid;grid-template-columns:minmax(260px,320px) minmax(0,1fr);gap:17px}.exam-sidebar,.exam-main{padding:23px}.exam-sidebar h3,.exam-main h3{font-size:20px;color:#f3f5ff}.exam-subtitle,.exam-main p{color:#b9c8dc;font-size:13px;line-height:1.7;margin:10px 0 16px}.exam-controls{display:grid;gap:10px}.exam-controls .run-button{margin:0}.exam-score{margin-top:22px;color:#a2b7d7;font-size:12px}.exam-label{color:#a8a2ff;font-size:11px;font-weight:850;letter-spacing:1.5px}.exam-answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin-top:20px}.exam-answers label{display:flex;flex-direction:column;gap:7px;color:#c6d3e7;font-size:12px;font-weight:700}.exam-answers input{background:#0b1529;border:1px solid #344465;color:#f2f6ff;border-radius:9px;padding:11px;min-width:0}.exam-answers button{grid-column:1/-1;margin:0}.exam-ok,.exam-wrong{padding:13px;margin:14px 0;border-radius:9px;font-weight:750;font-size:13px}.exam-ok{background:#163d33;color:#a3f4d3;border:1px solid #236950}.exam-wrong{background:#40212d;color:#ffc7d8;border:1px solid #7b3b50}#examSolution{background:#0e182b;padding:21px;border:1px solid #2c3e58;border-radius:14px;margin-top:18px}#examSolution[hidden]{display:none}.exam-gantt{display:flex;min-height:48px;overflow:hidden;border-radius:9px;margin:12px 0 7px}.exam-gantt span{min-width:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#13182c;border-right:1px solid #13182c55}.exam-timing{font-size:11px!important}.exam-result{margin:15px 0;background:#152b40;border-radius:10px;padding:13px;color:#d8e8fb}.exam-result p{margin:5px 0!important}.guide-panel,.quiz-panel,.compare-panel{background:#10192d}.study-layout .guide-panel{padding:23px}.quiz-panel{padding:22px}.algo-card h4{color:#edf1ff}.algo-card p,.algo-card small{color:#b5c4dd}.algo-card button{color:#a99bff}.metric-card .metric-value{color:#edf2ff}.metric-card .metric-foot{color:#9aaac5}.field select{color-scheme:dark}@media(max-width:900px){.exam-layout{grid-template-columns:1fr}}@media(max-width:750px){.theory-grid{grid-template-columns:1fr}.exam-answers{grid-template-columns:1fr}}

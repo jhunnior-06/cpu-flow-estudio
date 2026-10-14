@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "Simulador interactivo de planificación de CPU para estudiar Sistemas Operativos",
   "scripts": {
-    "test": "node --test test/scheduler.test.cjs",
+    "test": "node --test",
     "dev": "node server.cjs",
     "start": "node server.cjs"
   },

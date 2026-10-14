@@ -9,6 +9,7 @@ Simulador web de planificación de CPU para estudiar **Sistemas Operativos**. Ap
 - Diagrama de Gantt coloreado automáticamente al editar números; ejecución **paso a paso**, botón de reproducción y tabla de decisiones.
 - Tiempos de espera, retorno, respuesta, cambios de contexto, utilización de CPU y rendimiento; comparación entre algoritmos.
 - Ejemplos precargados, guía de fórmulas, preguntas de práctica, historial local, exportaciones CSV/JSON e impresión en PDF A4 horizontal.
+- Prácticas de examen con desarrollo completo: regla del algoritmo, procesos disponibles en cada decisión, Gantt, sustitución numérica de TR/TE/TS por proceso, sumas de los promedios y comprobación del uso de CPU.
 
 ## Instalar y ejecutar
 
@@ -37,6 +38,8 @@ No se necesita instalar dependencias ni configurar claves de API.
 4. Abre «Comparador», revisa la teoría o practica con el mini cuestionario.
 5. Guarda tus simulaciones en el navegador o expórtalas.
 
+En **Prácticas de examen**, pulsa **Ver solución explicada**. La solución muestra por qué se elige cada proceso y desarrolla las fórmulas con los datos del ejercicio. En Round Robin incluye la cola y el quantum disponible; en SRTF compara los tiempos restantes en las nuevas llegadas. El botón **Ver este ejercicio en el simulador** copia exactamente esos procesos.
+
 ### Convenciones académicas
 
 - En prioridades, el **número menor es prioridad más alta**.
@@ -61,6 +64,8 @@ cpu-flow-estudio/
 ├── styles.css          # Diseño adaptable y estilos de impresión
 ├── app.js              # Formularios, visualizaciones y eventos
 ├── scheduler.js        # Motor de planificación y métricas
+├── solution.js         # Desarrollo de decisiones y fórmulas de las prácticas
+├── practicas.js        # Teoría y autoevaluación
 ├── test/
 │   └── scheduler.test.cjs
 ├── server.cjs          # Servidor de desarrollo opcional
