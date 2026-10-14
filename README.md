@@ -10,6 +10,7 @@ Simulador web de planificación de CPU para estudiar **Sistemas Operativos**. Ap
 - Tiempos de espera, retorno, respuesta, cambios de contexto, utilización de CPU y rendimiento; comparación entre algoritmos.
 - Ejemplos precargados, guía de fórmulas, preguntas de práctica, historial local, exportaciones CSV/JSON e impresión en PDF A4 horizontal.
 - Prácticas de examen con desarrollo completo: regla del algoritmo, procesos disponibles en cada decisión, Gantt, sustitución numérica de TR/TE/TS por proceso, sumas de los promedios y comprobación del uso de CPU.
+- **Teoría → Formulario de fórmulas:** variables, fórmulas por proceso, promedios, utilización e inactividad, rendimiento y fórmulas de RR, HRRN, EDF, MLFQ y lotería, con ejemplos numéricos resueltos.
 
 ## Instalar y ejecutar
 

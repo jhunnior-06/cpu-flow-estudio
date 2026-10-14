@@ -39,6 +39,35 @@ body{background-attachment:fixed}
 footer{background:#0a1124;color:#d1d8f3}
 @media print{html,body{background:white!important;color:black!important}}
 /* Desarrollo numérico de las soluciones de examen. */
+.formula-reference{padding:24px;margin-bottom:24px;min-width:0}
+.formula-reference-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:18px}
+.formula-reference-heading h3{font-size:25px;margin:5px 0 8px}
+.formula-reference-heading p,.formula-reference-note{font-size:12px;color:var(--muted);line-height:1.7}
+.formula-reference-heading .secondary-button{flex-shrink:0}
+.formula-variables{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:20px 0}
+.formula-variables>div{display:flex;align-items:baseline;gap:10px;min-width:0;padding:11px;border:1px solid var(--line);border-radius:8px;background:var(--purple-light)}
+.formula-variables dt{font-size:13px;font-weight:800;color:var(--purple);min-width:26px}
+.formula-variables dd{margin:0;font-size:11px;color:var(--text);overflow-wrap:anywhere}
+.formula-group{margin:22px 0}
+.formula-group>h4{font-size:15px;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.formula-group>h4:before{content:'';display:block;width:8px;height:8px;border-radius:50%;background:var(--purple)}
+.formula-group-metrics>h4:before{background:var(--teal)}
+.formula-group-algorithms>h4:before{background:#f49a58}
+.formula-reference-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.formula-reference-card{min-width:0;border:1px solid var(--line);border-top:3px solid var(--purple);border-radius:10px;padding:16px;background:var(--white);display:flex;flex-direction:column;gap:11px}
+.formula-group-metrics .formula-reference-card{border-top-color:var(--teal)}
+.formula-group-algorithms .formula-reference-card{border-top-color:#f49a58}
+.formula-reference-card h5{margin:0;color:var(--text);font-size:14px}
+.formula-reference-card code,.formula-list code{white-space:normal;overflow-wrap:anywhere;max-width:100%}
+.formula-reference-card>code{display:block;padding:10px;border:1px solid var(--line);border-radius:7px;background:var(--purple-light);color:var(--text);font:700 12px/1.7 ui-monospace,monospace}
+.formula-reference-card p{font-size:12px;line-height:1.7;color:var(--muted);margin:0 0 5px}
+.formula-example{border-top:1px solid var(--line);padding-top:10px;margin-top:auto}
+.formula-example span{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.5px;font-weight:800;color:var(--teal);margin-bottom:5px}
+.formula-example code{display:block;color:var(--text);font:600 12px/1.7 ui-monospace,monospace}
+.study-layout>.guide-panel{min-width:0}
+@media(max-width:1000px){.formula-reference-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.formula-reference{padding:16px}.formula-reference-heading{flex-direction:column}.formula-reference-grid{grid-template-columns:1fr}.formula-variables{grid-template-columns:repeat(2,minmax(0,1fr))}.formula-variables>div{flex-direction:column;gap:3px}}
+
 .exam-main{min-width:0}
 .solution-section{padding-top:20px;margin-top:20px;border-top:1px solid var(--line)}
 .solution-section>h4{font-size:15px;color:var(--text);margin-bottom:12px;letter-spacing:0}
