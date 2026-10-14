@@ -129,7 +129,7 @@
     $('quizBody').innerHTML=`<div class="quiz-question">${state.quiz+1}/${questions.length}. ${safe(q.q)}</div>${q.options.map((text,i)=>`<button class="quiz-option ${state.selectedQuiz===null?'':i===q.correct?'correct':i===state.selectedQuiz?'incorrect':''}" data-answer="${i}" ${state.selectedQuiz===null?'':'disabled'}>${String.fromCharCode(65+i)}. ${safe(text)}</button>`).join('')}<div class="quiz-feedback">${state.selectedQuiz===null?'Selecciona una respuesta.':`${state.selectedQuiz===q.correct?'✓ ¡Correcto!':'✕ Incorrecto.'} ${safe(q.why)}`}</div><button class="secondary-button" style="margin-top:12px" id="nextQuiz">Siguiente pregunta →</button>`;
   }
   function algorithmsRender(){
-    $('algorithmCards').innerHTML=E.ALGORITHMS.map((a,i)=>`<div class="algo-card"><span class="algo-symbol">${['◷','✂','↘','↻','★','★','☰','↑','⇄','▤','▥','♣','⌛','◴'][i]}</span><h4>${safe(a.name)}</h4><small>${safe(a.kind)}</small><p>${safe(a.desc)}</p><button data-choose="${safe(a.id)}">Probar algoritmo →</button></div>`).join('');
+    $('algorithmCards').innerHTML=window.CPUStudy.renderAlgorithmCards(E);
   }
   function saveHistory(){
     if(!state.sim){toast('Primero ejecuta una simulación.');return;}

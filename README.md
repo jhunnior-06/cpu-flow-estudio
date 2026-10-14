@@ -10,7 +10,7 @@ Simulador web de planificación de CPU para estudiar **Sistemas Operativos**. Ap
 - Tiempos de espera, retorno, respuesta, cambios de contexto, utilización de CPU y rendimiento; comparación entre algoritmos.
 - Ejemplos precargados, guía de fórmulas, preguntas de práctica, historial local, exportaciones CSV/JSON e impresión en PDF A4 horizontal.
 - Prácticas de examen con desarrollo completo: regla del algoritmo, procesos disponibles en cada decisión, Gantt, sustitución numérica de TR/TE/TS por proceso, sumas de los promedios y comprobación del uso de CPU.
-- **Teoría → Formulario de fórmulas:** variables, fórmulas por proceso, promedios, utilización e inactividad, rendimiento y fórmulas de RR, HRRN, EDF, MLFQ y lotería, con ejemplos numéricos resueltos.
+- **Teoría completa del material de 13 páginas:** planificación, estados, READY, tipos de algoritmos, nueve métricas con nombres completos y fórmulas matemáticas, finalización, promedios, ejemplos resueltos de FCFS/prioridades/SJF/RR/SRTF y criterios de comparación. Algoritmos y métricas se distinguen por colores en ambos temas.
 
 ## Instalar y ejecutar
 
@@ -41,6 +41,8 @@ No se necesita instalar dependencias ni configurar claves de API.
 
 En **Prácticas de examen**, pulsa **Ver solución explicada**. La solución muestra por qué se elige cada proceso y desarrolla las fórmulas con los datos del ejercicio. En Round Robin incluye la cola y el quantum disponible; en SRTF compara los tiempos restantes en las nuevas llegadas. El botón **Ver este ejercicio en el simulador** copia exactamente esos procesos.
 
+En **Teoría**, consulta las fórmulas completas y abre los ejemplos del material. Cada ejemplo incluye los datos originales, Gantt, selección, TR/TE/TS/penalización por proceso, promedios, TTU, T_CC, TTT, EFF y porcentaje perdido. Se desarrolla el retorno correcto de C en Round Robin (11 − 4 = 7), coherente con el Gantt y el promedio final del material.
+
 ### Convenciones académicas
 
 - En prioridades, el **número menor es prioridad más alta**.
@@ -49,6 +51,7 @@ En **Prácticas de examen**, pulsa **Ver solución explicada**. La solución mue
 - Round Robin coloca el proceso cuyo quantum termina **después de incorporar las nuevas llegadas** al inicio del siguiente instante.
 - Para EDF/RMS, cada proceso se considera una tarea periódica que genera instancias hasta el horizonte indicado.
 - La simulación asume una CPU; no incluye costo temporal por cambios de contexto.
+- El material define TTT desde la primera llegada; el panel del simulador cuenta desde t=0. Ambos coinciden en los ejemplos del material, cuya primera llegada es 0. El porcentaje perdido en cambios de contexto corresponde a T_CC/TTT; el porcentaje de inactividad corresponde al tiempo de CPU libre.
 - El algoritmo de lotería utiliza semilla fija reproducible, ideal para enseñar.
 
 ## Pruebas
@@ -66,6 +69,7 @@ cpu-flow-estudio/
 ├── app.js              # Formularios, visualizaciones y eventos
 ├── scheduler.js        # Motor de planificación y métricas
 ├── solution.js         # Desarrollo de decisiones y fórmulas de las prácticas
+├── study.js            # Fórmulas, ejemplos y algoritmos del material de estudio
 ├── practicas.js        # Teoría y autoevaluación
 ├── test/
 │   └── scheduler.test.cjs

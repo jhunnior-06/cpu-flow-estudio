@@ -107,3 +107,14 @@ html[data-theme="light"] footer{background:#192647}
 html[data-theme="light"] footer p{color:#c2cee5}
 @media(max-width:780px){.theme-toggle{padding:9px 11px}.theme-toggle-label{display:none}}
 @media print{.theme-toggle{display:none!important}}
+
+/* Colores del material: el mismo significado en ambos temas. */
+html[data-theme] .study-colored{--study-fg:var(--study-accent);--study-background:var(--study-dark);background:var(--study-background);border-color:color-mix(in srgb,var(--study-fg) 32%,var(--line))}
+html[data-theme="light"] .study-colored{--study-fg:var(--study-ink);--study-background:var(--study-light)}
+html[data-theme] .algo-card.study-colored{background:var(--study-background);border-top-color:var(--study-fg)}
+html[data-theme] .algo-card.study-colored .algo-symbol{background:var(--white);color:var(--study-fg);border:1px solid var(--study-fg)}
+html[data-theme] .algo-card.study-colored .algorithm-full-name,html[data-theme] .algo-card.study-colored button{color:var(--study-fg)}
+html[data-theme] .algo-card.study-colored p,html[data-theme] .algo-card.study-colored small{color:var(--muted)}
+html[data-theme] .metric-reference-table .study-colored>th,html[data-theme] .metric-reference-table .study-colored>td{background:transparent;color:var(--text);border-color:var(--line)}
+html[data-theme] .metric-reference-table .study-colored>th{color:var(--study-fg)}
+html[data-theme] .metric-reference-table .study-colored:hover{background:var(--study-background)}

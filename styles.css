@@ -39,6 +39,77 @@ body{background-attachment:fixed}
 footer{background:#0a1124;color:#d1d8f3}
 @media print{html,body{background:white!important;color:black!important}}
 /* Desarrollo numérico de las soluciones de examen. */
+.pdf-metrics-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:20px 0}
+.pdf-metric-card{min-width:0;border:1px solid var(--line);border-top:4px solid var(--study-fg);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:12px}
+.pdf-metric-card h4{font-size:15px;line-height:1.5;letter-spacing:0;color:var(--text)}
+.pdf-metric-card p{font-size:12px;line-height:1.75;color:var(--muted);margin:0}
+.metric-reference-heading{display:flex;align-items:flex-start;gap:10px}
+.metric-symbol{border:1px solid var(--study-fg);border-radius:7px;padding:4px 7px;flex-shrink:0;font-size:11px;font-weight:800;color:var(--study-fg)}
+.study-equation{width:100%;overflow-x:auto;scrollbar-width:thin;padding:12px 5px;border:1px solid var(--line);border-radius:8px;background:var(--white);color:var(--text)}
+.study-equation math{font-size:20px;text-align:center;margin:0;min-height:34px}
+.study-equation math mtext{font-size:.65em}
+.pdf-metric-card .metric-interpretation{color:var(--study-fg);font-weight:700}
+.formula-condition{font-size:11px;font-weight:700;color:var(--muted)}
+.study-glossary,.study-complement{margin:18px 0;border:1px solid var(--line);border-radius:10px;padding:13px}
+.study-glossary summary,.study-complement summary,.pdf-process-detail summary{cursor:pointer;font-size:13px;font-weight:800;color:var(--purple)}
+.study-complement .formula-reference-grid{margin-top:16px}
+.formula-variables>div{flex-direction:column;gap:5px}
+.metric-reference-table table{min-width:850px;white-space:normal}
+.metric-reference-table th:first-child{width:25%}
+.metric-reference-table th:nth-child(3){width:32%}
+.metric-reference-table caption{text-align:left;padding:12px 0;font-size:13px;font-weight:800;color:var(--text)}
+.metric-reference-table td,.metric-reference-table th{font-size:12px;line-height:1.7;padding:13px!important}
+.study-note{font-size:11px!important;line-height:1.75!important;color:var(--muted)!important}
+.study-callout{margin:18px 0;padding:17px;border-left:4px solid var(--teal);background:var(--purple-light);border-radius:0 10px 10px 0}
+.study-callout p{font-size:12px;color:var(--muted);line-height:1.8;margin:6px 0 0}
+.study-states,.study-choice{padding:22px;margin:20px 0}
+.study-states h3,.study-choice h3{margin-bottom:14px;font-size:20px}
+.study-choice>p{font-size:12px;line-height:1.8;color:var(--muted);margin-bottom:15px}
+.study-state-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-bottom:15px}
+.study-state{min-width:0;border:1px solid var(--line);border-top:4px solid var(--study-fg);border-radius:10px;padding:14px}
+.study-state h4{font-size:14px;color:var(--text)}
+.study-state strong{display:block;font-size:10px;color:var(--study-fg);margin:6px 0}
+.study-state p{font-size:11px;color:var(--muted);line-height:1.7}
+.study-choice td{white-space:normal;min-width:150px}
+.study-workflow{padding-left:19px;margin:15px 0;color:var(--muted);font-size:13px;line-height:1.8}
+.study-workflow li{margin-bottom:12px}
+.study-workflow strong{color:var(--text)}
+#algorithmCards{display:block}
+.algorithm-section{margin:25px 0}
+.algorithm-section>h3{font-size:22px;margin-bottom:9px}
+.algorithm-section>p{font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:16px}
+.algorithm-card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.algo-card[data-algorithm]{min-width:0;border-top:4px solid var(--study-fg);display:flex;flex-direction:column;gap:9px;padding:21px}
+.algo-card[data-algorithm] h4{font-size:20px;margin:0}
+.algorithm-full-name{font-size:14px;line-height:1.6;font-weight:800;color:var(--study-fg)}
+.algorithm-spanish{font-size:12px;line-height:1.7;color:var(--text)}
+.algo-card[data-algorithm] small{margin:2px 0;font-size:11px;align-self:flex-start;border:1px solid var(--line);padding:4px 7px;border-radius:6px}
+.algorithm-question{font-size:12px;line-height:1.6;color:var(--text)}
+.algo-card[data-algorithm] p{min-height:0;font-size:12px;line-height:1.75;margin:0}
+.algo-card[data-algorithm] .algorithm-risk{font-size:11px}
+.algorithm-source{font-size:10px;color:var(--muted);margin-top:auto;padding-top:5px}
+.algo-card[data-algorithm] button{font-size:12px;align-self:flex-start;padding:6px 0}
+.pdf-worked-examples{padding:24px;margin:22px 0}
+.pdf-example{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:15px;min-width:0}
+.pdf-example>summary{cursor:pointer;padding:18px;font-size:15px;font-weight:800;color:var(--text)}
+.pdf-example>summary small{display:block;font-size:10px;font-weight:600;color:var(--study-fg);margin:6px 0 0}
+.pdf-example-content{padding:20px;background:var(--white);min-width:0}
+.pdf-example-content>h4{font-size:15px;color:var(--text);margin:20px 0 12px}
+.pdf-example-content>h4:first-child{margin-top:0}
+.pdf-example-content>p{font-size:12px;line-height:1.8;color:var(--muted);margin-bottom:12px}
+.pdf-example-content .data-table{font-size:12px}
+.pdf-example-metrics{min-width:780px}
+.pdf-decision-list{padding-left:20px;font-size:12px;line-height:1.8;color:var(--muted)}
+.pdf-decision-list li{margin:8px 0}
+.pdf-decision-list strong{color:var(--text)}
+.pdf-process-detail{margin:17px 0;padding:13px;border:1px solid var(--line);border-radius:9px}
+.pdf-process-formulas{min-width:0;padding:14px;border:1px solid var(--line);border-radius:9px}
+.pdf-process-formulas h5{margin:0;font-size:14px}
+.pdf-example-result{display:flex;flex-direction:column;gap:7px;margin-top:17px;background:var(--study-background);border-left:4px solid var(--study-fg);padding:17px;font-size:12px;line-height:1.8;color:var(--text)}
+.pdf-example-result strong{font-size:14px;color:var(--study-fg)}
+@media(max-width:1050px){.pdf-metrics-grid,.algorithm-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.study-state-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:600px){.pdf-metrics-grid,.algorithm-card-grid,.study-state-grid{grid-template-columns:1fr}.pdf-worked-examples,.study-states,.study-choice{padding:16px}.pdf-example-content{padding:13px}.pdf-metric-card{padding:14px}.metric-reference-heading{flex-direction:column}.study-equation math{font-size:18px}}
+
 .formula-reference{padding:24px;margin-bottom:24px;min-width:0}
 .formula-reference-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:18px}
 .formula-reference-heading h3{font-size:25px;margin:5px 0 8px}
