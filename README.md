@@ -43,6 +43,8 @@ En **Prácticas de examen**, puedes editar el nombre, llegada, ráfaga y priorid
 
 Pulsa **Ver solución explicada** para consultar por qué se elige cada proceso y las fórmulas desarrolladas. Si dejas la solución abierta, también se actualiza al editar. El botón **Ver este ejercicio en el simulador** copia exactamente los procesos actuales.
 
+El **resumen de métricas por proceso** incluye un diagrama de Gantt justo debajo de la tabla, antes de los promedios: colores por proceso, duración de cada bloque, marcas de inicio y fin e intervalos de CPU libre. También se actualiza al editar, agregar o eliminar procesos y se puede desplazar en móvil.
+
 En **Teoría**, consulta las fórmulas completas y abre los ejemplos del material. Cada ejemplo incluye los datos originales, Gantt, selección, TR/TE/TS/penalización por proceso, promedios, TTU, T_CC, TTT, EFF y porcentaje perdido. Se desarrolla el retorno correcto de C en Round Robin (11 − 4 = 7), coherente con el Gantt y el promedio final del material.
 
 ### Convenciones académicas

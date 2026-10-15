@@ -65,6 +65,18 @@
 
   function formula(label,expression){return `<div class="worked-formula"><span>${safe(label)}</span><code>${safe(expression)}</code></div>`;}
 
+  function renderSummaryGantt(sim,colors){
+    const color=id=>id===null?'#cbd5e1':colors[sim.processes.findIndex(p=>p.id===id)%colors.length];
+    const total=sim.steps.length;
+    const legend=sim.processes.map(p=>`<span><i style="background:${color(p.id)}"></i>${safe(p.id)}</span>`).join('')+
+      (sim.segments.some(s=>s.id===null)?'<span><i style="background:#cbd5e1"></i>CPU libre</span>':'');
+    const columns=sim.segments.map(s=>`minmax(0,${s.end-s.start}fr)`).join(' ');
+    const blocks=sim.segments.map(s=>`<div class="summary-gantt-block" role="listitem" data-summary-process="${safe(s.id??'')}" data-start="${s.start}" data-end="${s.end}" style="background:${color(s.id)}" aria-label="${safe(s.id??'CPU libre')}: de ${s.start} a ${s.end}, duración ${s.end-s.start} unidades" title="${safe(s.id??'CPU libre')}: ${s.start} → ${s.end}"><strong>${safe(s.id??'Libre')}</strong><span>${s.end-s.start} u</span></div>`).join('');
+    const ticks=sim.segments.map(s=>`<span class="summary-gantt-time${s.start===0?' first':''}" data-time="${s.start}" style="left:${100*s.start/total}%">${s.start}</span>`).join('')+
+      `<span class="summary-gantt-time last" data-time="${total}" style="left:100%">${total}</span>`;
+    return `<figure class="summary-gantt"><figcaption>Diagrama de Gantt · ${safe(sim.algorithmName)}</figcaption><div class="summary-gantt-legend" aria-label="Colores de los procesos">${legend}</div><div class="summary-gantt-scroll" tabindex="0" role="region" aria-label="Diagrama de Gantt junto al resumen de métricas, desplazable"><div class="summary-gantt-rail" style="min-width:${Math.max(480,total*48)}px"><div class="summary-gantt-track" style="grid-template-columns:${columns}" role="list" aria-label="Secuencia de ejecución">${blocks}</div><div class="summary-gantt-axis" aria-hidden="true">${ticks}</div></div></div><p class="summary-gantt-help">Los números marcan el inicio y el fin de cada tramo; el ancho representa su duración. Si la secuencia es larga, desliza el diagrama horizontalmente.</p></figure>`;
+  }
+
   function render(sim,colors){
     const model=build(sim);
     const processColor=id=>id===null?'#64748b':colors[sim.processes.findIndex(p=>p.id===id)%colors.length];
@@ -109,7 +121,7 @@
       `<ol class="decision-list">${decisions}</ol></section>`+
       `<section class="solution-section"><h4>Paso 3. Sustituir los valores en cada fórmula</h4><div class="process-calculations">${calculations}</div>`+
       `<div class="table-container"><table class="data-table"><caption>Resumen de métricas por proceso (u)</caption><thead><tr><th>Proceso</th><th>TL</th><th>CPU</th><th>TI</th><th>TF</th><th>TE</th><th>TR</th><th>TS</th></tr></thead><tbody>${sim.results.map(r=>
-        `<tr><td>${safe(r.label||r.id)}</td><td>${r.arrival}</td><td>${r.burst}</td><td>${r.first??'—'}</td><td>${r.finish??'Pendiente'}</td><td>${r.wait??'—'}</td><td>${r.turnaround??'—'}</td><td>${r.response??'—'}</td></tr>`).join('')}</tbody></table></div></section>`+
+        `<tr><td>${safe(r.label||r.id)}</td><td>${r.arrival}</td><td>${r.burst}</td><td>${r.first??'—'}</td><td>${r.finish??'Pendiente'}</td><td>${r.wait??'—'}</td><td>${r.turnaround??'—'}</td><td>${r.response??'—'}</td></tr>`).join('')}</tbody></table></div>${renderSummaryGantt(sim,colors)}</section>`+
       `<section class="solution-section"><h4>Paso 4. Sumar y obtener los promedios</h4><p>Promedio = suma de los tiempos / número de procesos con esa métrica. Conserva los valores completos y redondea solo el resultado final a dos decimales.</p>${averageMarkup}</section>`+
       `<section class="solution-section solution-summary"><h4>Paso 5. Comprobar la utilización de CPU</h4>`+
       formula('Tiempo útil (TTU)',`${busy.join(' + ')||'0'} = ${m.ttU} u`)+
