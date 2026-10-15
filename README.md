@@ -39,7 +39,9 @@ No se necesita instalar dependencias ni configurar claves de API.
 4. Abre «Comparador», revisa la teoría o practica con el mini cuestionario.
 5. Guarda tus simulaciones en el navegador o expórtalas.
 
-En **Prácticas de examen**, pulsa **Ver solución explicada**. La solución muestra por qué se elige cada proceso y desarrolla las fórmulas con los datos del ejercicio. En Round Robin incluye la cola y el quantum disponible; en SRTF compara los tiempos restantes en las nuevas llegadas. El botón **Ver este ejercicio en el simulador** copia exactamente esos procesos.
+En **Prácticas de examen**, puedes editar el nombre, llegada, ráfaga y prioridad, **agregar o eliminar procesos** (de 1 a 20) y cambiar el quantum de Round Robin. Cambiar el algoritmo conserva tus datos. La corrección y la solución se recalculan con los valores actuales; si editas un dato, se limpian tus respuestas anteriores. Los datos inválidos muestran un mensaje y bloquean la corrección hasta que los ajustes.
+
+Pulsa **Ver solución explicada** para consultar por qué se elige cada proceso y las fórmulas desarrolladas. Si dejas la solución abierta, también se actualiza al editar. El botón **Ver este ejercicio en el simulador** copia exactamente los procesos actuales.
 
 En **Teoría**, consulta las fórmulas completas y abre los ejemplos del material. Cada ejemplo incluye los datos originales, Gantt, selección, TR/TE/TS/penalización por proceso, promedios, TTU, T_CC, TTT, EFF y porcentaje perdido. Se desarrolla el retorno correcto de C en Round Robin (11 − 4 = 7), coherente con el Gantt y el promedio final del material.
 
